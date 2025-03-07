@@ -1,0 +1,11 @@
+/sqlfiles/*.sql
+sqlfiles
+/Executeable_files/*
+/Executeable_files
+/*.csv
+.venv
+__pycache__
+/*.sh
+*.sh
+*.csv
+/*CSV
