@@ -3,10 +3,12 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 from datetime import date
 import glob
+import shutil
 
 today=str(date.today())
+print(today)
 
-input_path='/Users/michaelingram/Downloads/pubinfo_daily_Wed (2)'
+input_path='/Users/michaelingram/Downloads/pubinfo_daily_Sat'
 ns = {  'caml':'http://lc.ca.gov/legalservices/schemas/caml.1#',
         'xlink':'http://www.w3.org/1999/xlink',
        ' xhtml':'http://www.w3.org/1999/xhtml',
@@ -29,8 +31,8 @@ bill_data=[]
     # Process each file
 for file_path in files_to_process:
     filename = os.path.basename(file_path)
-    print(filename)
-    print(file_path)
+    #print(filename)
+    #print(file_path)
     tree = ET.parse(file_path)
     root = tree.getroot()
     
@@ -56,6 +58,16 @@ for file_path in files_to_process:
 
     digesttext =  base.find('./'+namespace+'DigestText/*').text if base.find('./'+namespace+'DigestText/*') is not None else None
     #print('Digest Text :'+ str(digesttext))
+
+    if digesttext is None:
+         Resolution=root.find('.//'+namespace+'Resolution')
+         resolution_texts = []
+         for elem in Resolution.iter():
+            #print(elem.tag, elem.text)
+            if elem.text != None:
+                resolution_texts.append(elem.text)
+            resolution="".join(resolution_texts)
+            digesttext=resolution
     
     bill_data.append({
             "Bill ID": Id,
@@ -66,9 +78,16 @@ for file_path in files_to_process:
         })
 
 df=pd.DataFrame.from_dict(bill_data)
-print(df)
 
-output =os.makedirs(today+'CSV',exist_ok=True)
-csv_name=today+'/bill_data.csv'
+
+
+output_path=(today+'CSV')
+print(output_path)
+if os.path.isdir(output_path) is True:
+   shutil.rmtree(output_path)
+else:
+    os.makedirs(today+'CSV',exist_ok=False)
+#print('Output:'+ output)
+csv_name=output_path+'/bill_data.csv'
 print(csv_name)
 df.to_csv(csv_name,index=False)
