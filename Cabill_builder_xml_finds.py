@@ -58,7 +58,8 @@ for file_path in files_to_process:
 
     digesttext =  base.find('./'+namespace+'DigestText/*').text if base.find('./'+namespace+'DigestText/*') is not None else None
     #print('Digest Text :'+ str(digesttext))
-
+    
+    #Replaces digtest text with resolution text if digest text is None)
     if digesttext is None:
          Resolution=root.find('.//'+namespace+'Resolution')
          resolution_texts = []
