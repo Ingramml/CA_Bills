@@ -8,13 +8,14 @@ import shutil
 today=str(date.today())
 print(today)
 
-input_path='/Users/michaelingram/Downloads/pubinfo_daily_Sat'
+
+input_path='/Users/michaelingram/Downloads/pubinfo_2025'
 ns = {  'caml':'http://lc.ca.gov/legalservices/schemas/caml.1#',
         'xlink':'http://www.w3.org/1999/xlink',
        ' xhtml':'http://www.w3.org/1999/xhtml',
         'xsi':'http://www.w3.org/2001/XMLSchema-instance'}
 bill_data = {}
-
+suffix=os.path.basename(input_path)
     # Determine if input is a folder or a single file
 files_to_process = []
 if os.path.isdir(input_path):
@@ -60,6 +61,7 @@ for file_path in files_to_process:
     #print('Digest Text :'+ str(digesttext))
     
     #Replaces digtest text with resolution text if digest text is None)
+    
     if digesttext is None:
          Resolution=root.find('.//'+namespace+'Resolution')
          resolution_texts = []
@@ -82,13 +84,11 @@ df=pd.DataFrame.from_dict(bill_data)
 
 
 
-output_path=(today+'CSV')
-print(output_path)
-if os.path.isdir(output_path) is True:
-   shutil.rmtree(output_path)
+if os.path.isdir('/Users/michaelingram/Documents/Coding_Projects/CA_Bills/CSV') is True:
+   pass
 else:
-    os.makedirs(today+'CSV',exist_ok=False)
+    os.makedirs('/Users/michaelingram/Documents/Coding_Projects/CA_Bills/CSV',exist_ok=False)
 #print('Output:'+ output)
-csv_name=output_path+'/bill_data.csv'
+csv_name='/Users/michaelingram/Documents/Coding_Projects/CA_Bills/CSV'+'/bill_data_'+suffix+'.csv'
 print(csv_name)
 df.to_csv(csv_name,index=False)
