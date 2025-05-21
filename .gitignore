@@ -169,3 +169,13 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+#Folders to ingore
+.Python automation/*/unzip/*.lob
+.Python automation/*/unzip/*.dat
+.Python automation/*/*.zip
+*.lob
+*.bat
+Python automation/*/unzip/*.dat
+Python automation/*/*.zip
+Python automation/2025*
