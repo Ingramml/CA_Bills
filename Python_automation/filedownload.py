@@ -39,7 +39,6 @@ def download_pubinfo_daily_sun(output_folder):
     
 
 if __name__ == "__main__":
-    """
-    output_folder = "/Users/michaelingram/Documents/GitHub/CA_bills/Python automation"
+
+    output_folder  =  "/Users/michaelingram/Documents/GitHub/CA_Bills-2/Python_automation"
     download_pubinfo_daily_sun(output_folder)
-    """
