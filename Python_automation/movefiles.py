@@ -5,16 +5,22 @@ import glob
 def move_files(inputpath):
     
     output_path = os.path.dirname(inputpath)
+    """
     print('Moving files from: ' + inputpath)
     print('Moving files to: ' + output_path)
-
+    """
     # Find all .bat files in the input path
-    files_to_be_moved = glob.glob(os.path.join(inputpath, '*.dat'))
+    files_to_be_moved = glob.glob(os.path.join(inputpath, '*.*'))
     
     print('Files to be moved: ' + str(files_to_be_moved))
 
     for file in files_to_be_moved:
-        destination = os.path.join(output_path, os.path.basename(file))
+        if file.endswith('.bat'):
+            print(f'Skipping file: {file}')
+            destination = os.path.join(output_path,"Bat_files", os.path.basename(file))
+
+        elif file.endswith('.lob'):
+            destination = os.path.join(output_path,"LObFiles" ,os.path.basename(file))
         print(f'Moving file: {file} to {destination}')
         
         # Move the file

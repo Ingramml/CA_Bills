@@ -172,11 +172,16 @@ cython_debug/
 
 .DS_Store
 #Folders to ingore
-.Python automation/*/unzip/*.lob
-.Python automation/*/unzip/*.dat
-.Python automation/*/*.zip
+.Python_automation/*/unzip/*.lob
+.Python_automation/*/unzip/*.dat
+.Python_automation/*/*.zip
+,
 *.lob
 *.bat
-Python automation/*/unzip/*.dat
-Python automation/*/*.zip
-Python automation/2025*
+Python_automation/*/unzip/*.dat
+Python_automation/*/*.zip
+Python_automation/2025*
+Python_automation/SQL_files/Executes_*
+
+loadData_2.sh
+Python_automation/convert_mysql_to_postgres_sql.py

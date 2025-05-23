@@ -32,7 +32,7 @@ def download_pubinfo_daily_sun(output_folder):
             with open(file_path, "wb") as f:
                 f.write(r.content)
             print(f"Download complete: {file_path}")
-            return file_path
+            return file_path,working_dir
     else:
         print("pubinfo_daily_Sun.zip not found.")
         return None
