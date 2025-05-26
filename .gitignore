@@ -182,6 +182,10 @@ Python_automation/*/unzip/*.dat
 Python_automation/*/*.zip
 Python_automation/2025*
 Python_automation/SQL_files/Executes_*
+*.lob
+*.bat
+*.dat
+*.zip
 
 loadData_2.sh
 Python_automation/convert_mysql_to_postgres_sql.py

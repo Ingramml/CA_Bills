@@ -30,3 +30,18 @@ def get_postgres_connection():
         print(f"Error connecting to the database: {e}")
         return None
 
+def get_postgres_connection_sqlalchemy():
+    """
+    Returns a SQLAlchemy-compatible PostgreSQL connection string.
+    Loads credentials from environment variables.
+    """
+    load_dotenv()
+    dbname = os.getenv("POSTGRES_DB")
+    user = os.getenv("POSTGRES_USER")
+    password = os.getenv("POSTGRES_PASSWORD")
+    host = os.getenv("POSTGRES_HOST", "localhost")
+    port = os.getenv("POSTGRES_PORT", 5432)
+    return f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
+
+# Remove or comment out this call in production scripts
+#get_postgres_connection()

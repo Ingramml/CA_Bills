@@ -1,6 +1,9 @@
 #File checks to see if tables are already created
 import os
 import psycopg2
+from Database_connection import get_postgres_connection
+from dotenv import load_dotenv
+load_dotenv()
 
 def tables_exist(conn, table_names, schema='public'):
     """Check if all tables in table_names exist in the PostgreSQL database."""
@@ -24,6 +27,7 @@ def run_create_tables(conn, sql_file_path):
 
 # Example usage:
 if __name__ == "__main__":
+    """
     # Update these values with your actual database credentials
     conn = psycopg2.connect(
         dbname="your_db",
@@ -32,7 +36,9 @@ if __name__ == "__main__":
         host="localhost",
         port=5432
     )
-    table_names = ['table1', 'table2', 'table3']  # Replace with your actual table names
+    """    
+    conn= get_postgres_connection()
+    table_names = []
     sql_file_path = '/Users/michaelingram/Documents/GitHub/CA_bills/CA_Bills/Sqlfiles/capublic.sql'
     if not tables_exist(conn, table_names):
         run_create_tables(conn, sql_file_path)

@@ -25,7 +25,7 @@ def download_pubinfo_daily_sun(output_folder):
         file_path = os.path.join(working_dir, "pubinfo_daily_Sun.zip")
         if os.path.exists(file_path):
             print(f"File already exists: {file_path}")
-            return file_path
+            return file_path,working_dir
         else:
             print(f"Downloading: {download_url}")
             r = requests.get(download_url)
@@ -35,10 +35,11 @@ def download_pubinfo_daily_sun(output_folder):
             return file_path,working_dir
     else:
         print("pubinfo_daily_Sun.zip not found.")
-        return None
+        return None,None
     
 
 if __name__ == "__main__":
-
+    """
     output_folder  =  "/Users/michaelingram/Documents/GitHub/CA_Bills-2/Python_automation"
     download_pubinfo_daily_sun(output_folder)
+    """

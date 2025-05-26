@@ -2,7 +2,7 @@ import os
 import psycopg2
 from Database_connection import get_postgres_connection
 
-def load_sql_files(sql_dir, schema="public"):
+def load_sql_files(sql_dir,dat_dir, schema="ca_lobbyupdated"):
     """
     This script loads data into PostgreSQL tables using SQL files with a {DATA_FILE_PATH} placeholder.
     
@@ -18,7 +18,7 @@ def load_sql_files(sql_dir, schema="public"):
     - Database connection is handled by get_postgres_connection() from Database_connection.py.
     """
     
-    table_list_file = os.path.join(sql_dir, "tables_lc.lst")
+    table_list_file = "/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/SQL_files/tables_lc.lst"
     conn = get_postgres_connection()
     if conn is None:
         print("Could not connect to the database.")
@@ -26,13 +26,14 @@ def load_sql_files(sql_dir, schema="public"):
 
     logs_dir = os.path.join(sql_dir, "logs")
     os.makedirs(logs_dir, exist_ok=True)
+    
 
     with open(os.path.join(sql_dir, table_list_file)) as f:
         for line in f:
-            table = line.strip()
+            table = line.strip().upper()
             if not table:
                 continue
-            dat_file = os.path.join(sql_dir, f"{table}.dat")
+            dat_file = os.path.join(dat_dir, f"{table}.dat")
             sql_file = os.path.join(sql_dir, f"{table}.sql")
             log_file = os.path.join(logs_dir, f"{table}.log")
             if os.path.isfile(dat_file):
@@ -40,6 +41,7 @@ def load_sql_files(sql_dir, schema="public"):
                 try:
                     with open(sql_file, "r") as sql_input, open(log_file, "w") as log_output:
                         sql_script = sql_input.read()
+                        sql_script = sql_script.replace("{DATA_FILE_PATH}", dat_file)
                         with conn.cursor() as cur:
                             cur.execute(sql_script)
                             conn.commit()
@@ -54,6 +56,10 @@ def load_sql_files(sql_dir, schema="public"):
     print("Done.")
 
 if __name__ == "__main__":
-    # You can pass sql_dir as an argument or set it here
-    sql_dir = "/Users/michaelingram/Documents/GitHub/CA_Bills/Sqlfiles"
-    load_sql_files(sql_dir)
+    
+    #You can pass sql_dir as an argument or set it here
+    
+    sql_dir = "/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/SQL_files"
+    dat_dir = "/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/2025-05-23/Bat_files"
+    load_sql_files(sql_dir,dat_dir)
+    

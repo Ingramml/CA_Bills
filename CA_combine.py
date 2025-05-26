@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 import pandas as pd
 
-input_path='/Users/michaelingram/Downloads/pubinfo_daily_Wed/BILL_VERSION_TBL_61.lob'
+input_path='/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/2025-05-25/Lob_files/BILL_VERSION_TBL_1.lob'
 files_to_process = []
 if os.path.isdir(input_path):
     files_to_process = [
@@ -33,6 +33,7 @@ ns = {  'caml':'http://lc.ca.gov/legalservices/schemas/caml.1#',
         'xlink':'http://www.w3.org/1999/xlink',
        ' xhtml':'http://www.w3.org/1999/xhtml',
         'xsi':'http://www.w3.org/2001/XMLSchema-instance'}
+name_space = 'http://lc.ca.gov/legalservices/schemas/caml.1#'
 
 
 
