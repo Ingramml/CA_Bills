@@ -40,12 +40,10 @@ def unzip(*zip_file_paths):
 
 if __name__ == "__main__":
     
-    """
-    zip_file_path = ["/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/2025-05-25/pubinfo_daily_Sun.zip","/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/2025-05-25/pubinfo_daily_Sun.zip"]
+    
+    zip_file_path = ["/Users/michaelingram/Documents/GitHub/CA_Bills-1/2025-06-27/pubinfo_2025.zip","/Users/michaelingram/Documents/GitHub/CA_Bills-1/2025-06-27/pubinfo_daily_Sun.zip"]
     unzip(*zip_file_path)
     
-    
-    inputpath = "/Users/michaelingram/Documents/GitHub/CA_Bills-1/Python_automation/2025-05-23/unzip"
+    inputpath = "/Users/michaelingram/Documents/GitHub/CA_Bills-1/2025-06-27/unzip"
     move_files(inputpath)
-    """
     
